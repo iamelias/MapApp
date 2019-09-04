@@ -93,12 +93,12 @@
 				64F5FE8A231494320063A8A6 /* SessionResponse.swift */,
 				64B9C5E523162E6B0067F564 /* StudentLocationResponse.swift */,
 				64B9C5E723162E920067F564 /* StudentResultsResponse.swift */,
-				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
-				64A52C562318880F000C2B1A /* AddLocationClient.swift */,
 				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
 				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
 				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
+				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
+				64A52C562318880F000C2B1A /* AddLocationClient.swift */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";
