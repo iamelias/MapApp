@@ -22,6 +22,7 @@
 		64CA26D5230CA2DA001494ED /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CA26D4230CA2DA001494ED /* UdacityClient.swift */; };
 		64CA26D7230CD97E001494ED /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CA26D6230CD97E001494ED /* LoginRequest.swift */; };
 		64CEC0CE231B78C300DD3B09 /* LocatonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */; };
+		64D33F6E231EDC5D00A7841A /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */; };
 		64F5FE89231494240063A8A6 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5FE88231494240063A8A6 /* AccountResponse.swift */; };
 		64F5FE8B231494320063A8A6 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5FE8A231494320063A8A6 /* SessionResponse.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		64CA26D4230CA2DA001494ED /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		64CA26D6230CD97E001494ED /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatonStruct.swift; sourceTree = "<group>"; };
+		64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		64F5FE88231494240063A8A6 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		64F5FE8A231494320063A8A6 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +98,7 @@
 				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
 				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
+				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				64B9C5E823162E920067F564 /* StudentResultsResponse.swift in Sources */,
 				64A52C572318880F000C2B1A /* AddLocationClient.swift in Sources */,
 				64CEC0CE231B78C300DD3B09 /* LocatonStruct.swift in Sources */,
+				64D33F6E231EDC5D00A7841A /* LocationTableViewController.swift in Sources */,
 				64A52C55231887ED000C2B1A /* AddLocationViewController.swift in Sources */,
 				64F5FE89231494240063A8A6 /* AccountResponse.swift in Sources */,
 				64CA26D7230CD97E001494ED /* LoginRequest.swift in Sources */,
