@@ -41,6 +41,13 @@ class LoginViewController: UIViewController {
     }
     }
     
+    
+
+    @IBAction func signUpTapped(_ sender: Any) {
+        let app = UIApplication.shared
+         app.open(URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!, options: [:], completionHandler: nil)
+    }
+    
     func handleLoginResponse(success: Bool, error: Error?) {
         
         if success {
