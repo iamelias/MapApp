@@ -19,6 +19,10 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var addLocationMap: MKMapView!
     @IBOutlet weak var addButton: UIButton!
     
+    var userAddedLocation: String = ""
+    var userTransferLat: Double = 0
+    var userTransferLon: Double = 0
+    
     //var delegate = MKMapViewDelegate.self
     
     override func viewDidLoad() {
@@ -29,7 +33,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
     @IBAction func cancelTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-       // dismiss(animated: true, completion: nil)
+        // dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
@@ -43,6 +47,9 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 let transferLon = Double(lon)
                 let coordinate = placemark.location!.coordinate
                 
+                self.userTransferLat = transferLat
+                self.userTransferLon = transferLon
+            
                 
                 var mapRegion = MKCoordinateRegion()
                 mapRegion.center = coordinate
@@ -52,27 +59,49 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 self.addLocationMap.setRegion(mapRegion, animated: true)
                 
                 let name = placemark.name!
-               // let country = placemark.country!
+                // let country = placemark.country!
                 let region = placemark.administrativeArea!
                 
                 let addedLocation = "\(name),\(region)" //\(country)
+                self.userAddedLocation = addedLocation
                 print(addedLocation)
                 
                 
                 let annotation = MKPointAnnotation() //creating/defining mapkit annotation
                 annotation.coordinate = placemark.location!.coordinate
                 
-
+                
                 
                 let annotationDetail = "\(placemark.name!), \(placemark.administrativeArea!) \(placemark.country!)"
                 annotation.title = annotationDetail
                 self.addLocationMap.addAnnotation(annotation)
                 self.UIChange()
                 
-                AddLocationClient.postStudentLocation(newLocation: addedLocation, newURL: self.URLText.text!, newLatitude: transferLat, newLongitude: transferLon, completion: self.handleGeoResponse(success: error:) )
 
-            }
-        })    }
+                
+        }
+        })
+        
+}
+    
+    @IBAction func addTapped(_ sender: Any)
+    {
+        
+        AddLocationClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+        
+        
+        
+        
+        //        addButton.isHidden = true
+        //        addLocationMap.isHidden = true
+        //        LocationText.isHidden = false
+        //        URLText.isHidden = false
+        //        FindButton.isHidden = false
+        //
+        MapViewController.refreshIndicator = 1
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     func UIChange() {
         
@@ -99,35 +128,22 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             pinImage!.annotation = annotation
         }
         
-       // pinImage!.isSelected = true
+        // pinImage!.isSelected = true
         return pinImage //returning the pin image/view
     }
     
     
-    @IBAction func addTapped(_ sender: Any)
-    {
-        self.dismiss(animated: true, completion: nil) //returns to map/table view
 
-//        addButton.isHidden = true
-//        addLocationMap.isHidden = true
-//        LocationText.isHidden = false
-//        URLText.isHidden = false
-//        FindButton.isHidden = false
-//
-//        self.dismiss(animated: true, completion: nil)
+    override func viewWillDisappear(_ animated: Bool) {
 
     }
-    
-//    func geocodeAddressString(_ addressString: String, completionHandler: @escaping CLGeocodeCompletionHandler) {
-//        let geocode = CLGeocoder()
-//        if let data = data?[0] {
-//
-//        }
-//    }
+
     
     func handleGeoResponse(success: Bool, error: Error?) {
-
+       
+//        self.dismiss(animated: true, completion: nil) //returns to map/table view
+        
     }
     
-
+    
 }

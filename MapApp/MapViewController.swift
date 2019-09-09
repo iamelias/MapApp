@@ -17,6 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
+    static var refreshIndicator: Int = 0 //0 is off, 1 is on
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,31 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         //print("I'm back in MapViewController")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        if MapViewController.refreshIndicator == 1 { //if refresh is on, ignore if not on
+        refresh()
+            print("refreshIndicator: 1")
+            MapViewController.refreshIndicator = 0 //turning off refresh
+        }
+        else {
+            print("refresh Indicator is still 0")
+        }
+    }
+    
     
     @IBAction func refreshTapped(_ sender: Any) {
         
+        refresh()
+
+    }
+    
+    func refresh() {
         print("refreshed")
-     
+        
         mapView.removeAnnotations(MapViewController.myAnnotations)
         GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        
     }
     
     func handleGetLocationResponse(success: Bool, error: Error?) {

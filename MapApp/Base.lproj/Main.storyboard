@@ -296,32 +296,6 @@
             </objects>
             <point key="canvasLocation" x="4122.3999999999996" y="385.71428571428572"/>
         </scene>
-        <!--LocationConfirmController-->
-        <scene sceneID="N2F-FE-wln">
-            <objects>
-                <viewController id="JwX-84-A35" userLabel="LocationConfirmController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kWD-Gl-HVB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-on-yjo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Add Location" id="tvO-HG-ucp">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_back-arrow" id="OSd-yu-rEW"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="iVx-hI-N6F"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OLD-dH-eSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5141" y="386"/>
-        </scene>
         <!--MapViewController-->
         <scene sceneID="5cm-Kq-umO">
             <objects>
@@ -427,7 +401,6 @@
         <image name="EmptyButton" width="171.5" height="18"/>
         <image name="MyMap Login Background" width="125" height="270.66665649414062"/>
         <image name="Rectangle" width="95" height="54"/>
-        <image name="icon_back-arrow" width="24" height="24"/>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
