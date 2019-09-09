@@ -82,12 +82,12 @@
 			children = (
 				646A9E21230B0F9800E48806 /* AppDelegate.swift */,
 				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
+				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
 				64CA26D6230CD97E001494ED /* LoginRequest.swift */,
 				646A9E25230B0F9800E48806 /* Main.storyboard */,
 				646A9E28230B0F9A00E48806 /* Assets.xcassets */,
 				646A9E2A230B0F9A00E48806 /* LaunchScreen.storyboard */,
 				646A9E2D230B0F9A00E48806 /* Info.plist */,
-				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
 				647F708F2312F3BC00598FAB /* LoginResponse.swift */,
 				64F5FE88231494240063A8A6 /* AccountResponse.swift */,
 				64F5FE8A231494320063A8A6 /* SessionResponse.swift */,

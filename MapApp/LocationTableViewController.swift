@@ -11,24 +11,24 @@ import UIKit
 class LocationTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var Table: UITableView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-    
+
+
      func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
         
-        //print("Table Test: 1")
+        print("Table Test: 1")
         //print("Test Table row number: \(DataHoldStruct.ResponseDataArray.count)")
         return DataHoldStruct.ResponseDataArray.count
+        
        
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("Table Test: 2")
+        //print("Table Test: 2")
         var tableRowLabel = DataHoldStruct.ResponseDataArray //assigning struct that holds each student object
         //print(tableRowLabel) //Testing TableView cell data retrieved
         
