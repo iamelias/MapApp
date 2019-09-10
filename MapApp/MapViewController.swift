@@ -18,6 +18,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     static var refreshIndicator: Int = 0 //0 is off, 1 is on
+    var mapChecker: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         //print("I'm back in MapViewController")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 //        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         if MapViewController.refreshIndicator == 1 { //if refresh is on, ignore if not on
-        refresh()
+            refresh(inMap: true)
             print("refreshIndicator: 1")
             MapViewController.refreshIndicator = 0 //turning off refresh
         }
@@ -41,24 +42,33 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func refreshTapped(_ sender: Any) {
         
-        refresh()
+        refresh(inMap: true)
 
     }
     
-    func refresh() {
+    func refresh (inMap: Bool) {
         print("refreshed")
         
+        if inMap { //if accessing from map controller
         mapView.removeAnnotations(MapViewController.myAnnotations)
         GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        }
+        
+        else {
+        GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
+        }
+        
+
         
     }
     
     func handleGetLocationResponse(success: Bool, error: Error?) {
         //let LocationDataStruct = GetStudentLocation().getStructData()
+        if mapView != nil {
         MapViewController().makeAnnotations() //calling function that makes annotations for pin
         //print(MapViewController.myAnnotations) Testing annotations stored in class property successfully
-        self.mapView.addAnnotations(MapViewController.myAnnotations) //adding all annotations to map
-        
+         self.mapView.addAnnotations(MapViewController.myAnnotations)  //adding all annotations to map
+        }
     }
     
     func makeAnnotations() {

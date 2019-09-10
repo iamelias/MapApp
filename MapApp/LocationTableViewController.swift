@@ -15,11 +15,37 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        if MapViewController.refreshIndicator == 1 { //if refresh is on, ignore if not on
+            MapViewController().refresh(inMap: false)
+            print("refreshIndicator: 1")
+            MapViewController.refreshIndicator = 0 //turning off refresh
+        }
+        else {
+            print("refresh Indicator is still 0")
+        }
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Table.reloadData()
+    }
+    
+    func handleGetTableResponse(success: Bool, error: Error?) {
+        print("I got here")
+    }
+    
+    
+    
+    
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
         
-        print("Table Test: 1")
+       // print("Table Test: 1")
         //print("Test Table row number: \(DataHoldStruct.ResponseDataArray.count)")
         return DataHoldStruct.ResponseDataArray.count
         
