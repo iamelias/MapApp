@@ -86,8 +86,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     @IBAction func logoutTapped(_ sender: Any) {
         
+          DeleteClient.DeleteSession {
         DispatchQueue.main.async {
-            DeleteClient.DeleteSession {
+        print("made it to logoutTapped")
             self.dismiss(animated: true, completion: nil)
         }
         }

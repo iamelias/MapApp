@@ -89,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				646A9E21230B0F9800E48806 /* AppDelegate.swift */,
-				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
 				64CA26D6230CD97E001494ED /* LoginRequest.swift */,
 				646A9E25230B0F9800E48806 /* Main.storyboard */,
 				646A9E28230B0F9A00E48806 /* Assets.xcassets */,
@@ -108,6 +107,7 @@
 				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
 				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64A52C562318880F000C2B1A /* AddLocationClient.swift */,
+				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
 				6431AAEB232D56FF0066F3AF /* DeleteClient.swift */,
 				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
 				6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */,

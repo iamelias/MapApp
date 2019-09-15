@@ -53,13 +53,14 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func logoutTapped(_ sender: Any) {
         
-        DispatchQueue.main.async {
-            DeleteClient.DeleteSession {
+        DeleteClient.DeleteSession {
+            print("Made it to DispatchQueue.main in table")
+            DispatchQueue.main.async {
+                print("made it to logoutTapped")
                 self.dismiss(animated: true, completion: nil)
-                print("Logged Out from Table View")
             }
-        }
         
+    }
     }
     
     

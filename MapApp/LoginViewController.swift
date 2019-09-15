@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         activityIndicator.isHidden = true //initially keeping activityIndicatior hidden
+        loggingIn(false)
         emailText.text = "" //clearing email and password textfields for logout
         passwordText.text = ""
     }
