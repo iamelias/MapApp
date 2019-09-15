@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     static var refreshIndicator: Int = 0 //0 is off, 1 is on
     var mapChecker: Bool = true
@@ -39,11 +40,60 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func addButtonTapped(_ sender: Any) {
+        
+        var updateTester = false
+            updateTester = AddLocationClient.ObjectData.ObjectIdent //either change to false or keep true
+        
+        guard !updateTester else {
+            
+            let alert = UIAlertController(title: "Update", message: "Do you want to update your location?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+                
+                let AddLocationViewController:UIViewController = UIStoryboard(name: "Main", bundle:  nil).instantiateViewController(withIdentifier: "StoryLoca") as UIViewController
+                
+                self.present(AddLocationViewController, animated: true, completion: nil) //calling AddViewController modualy
+                
+                print("alert is ok")
+                
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in print("cancel was tapped")
+                
+                return
+            })
+            
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        
+        let AddLocationViewController:UIViewController = UIStoryboard(name: "Main", bundle:  nil).instantiateViewController(withIdentifier: "StoryLoca") as UIViewController
+        
+        self.present(AddLocationViewController, animated: true, completion: nil) //calling AddViewController modualy
+        
+    }
     
     @IBAction func refreshTapped(_ sender: Any) {
         
         refresh(inMap: true)
 
+    }
+    @IBAction func logoutTapped(_ sender: Any) {
+        
+        DispatchQueue.main.async {
+            DeleteClient.DeleteSession {
+            self.dismiss(animated: true, completion: nil)
+        }
+        }
+        
+        print("Logged out from MapView")
+        
     }
     
     func refresh (inMap: Bool) {
@@ -55,7 +105,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         else {
-        GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
+             GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
         }
         
 

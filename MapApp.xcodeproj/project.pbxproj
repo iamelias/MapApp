@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6431AAEC232D56FF0066F3AF /* DeleteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6431AAEB232D56FF0066F3AF /* DeleteClient.swift */; };
+		6431AAEE232E0C7B0066F3AF /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */; };
 		646952C923174BB4003871C4 /* GetStudentLocationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646952C823174BB4003871C4 /* GetStudentLocationClient.swift */; };
 		646A9E22230B0F9800E48806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A9E21230B0F9800E48806 /* AppDelegate.swift */; };
 		646A9E24230B0F9800E48806 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A9E23230B0F9800E48806 /* LoginViewController.swift */; };
@@ -14,6 +16,8 @@
 		646A9E29230B0F9A00E48806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646A9E28230B0F9A00E48806 /* Assets.xcassets */; };
 		646A9E2C230B0F9A00E48806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646A9E2A230B0F9A00E48806 /* LaunchScreen.storyboard */; };
 		647F70902312F3BC00598FAB /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647F708F2312F3BC00598FAB /* LoginResponse.swift */; };
+		6488E5922327EF5900406FD8 /* updateLocationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488E5912327EF5900406FD8 /* updateLocationClient.swift */; };
+		6488E5942328421000406FD8 /* updateLocStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488E5932328421000406FD8 /* updateLocStruct.swift */; };
 		64A52C55231887ED000C2B1A /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A52C54231887ED000C2B1A /* AddLocationViewController.swift */; };
 		64A52C572318880F000C2B1A /* AddLocationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A52C562318880F000C2B1A /* AddLocationClient.swift */; };
 		64A52C59231896C9000C2B1A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A52C58231896C9000C2B1A /* MapViewController.swift */; };
@@ -28,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6431AAEB232D56FF0066F3AF /* DeleteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClient.swift; sourceTree = "<group>"; };
+		6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		646952C823174BB4003871C4 /* GetStudentLocationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStudentLocationClient.swift; sourceTree = "<group>"; };
 		646A9E1E230B0F9800E48806 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646A9E21230B0F9800E48806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +43,8 @@
 		646A9E2B230B0F9A00E48806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646A9E2D230B0F9A00E48806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		647F708F2312F3BC00598FAB /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		6488E5912327EF5900406FD8 /* updateLocationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateLocationClient.swift; sourceTree = "<group>"; };
+		6488E5932328421000406FD8 /* updateLocStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateLocStruct.swift; sourceTree = "<group>"; };
 		64A52C54231887ED000C2B1A /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		64A52C562318880F000C2B1A /* AddLocationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationClient.swift; sourceTree = "<group>"; };
 		64A52C58231896C9000C2B1A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +90,6 @@
 			children = (
 				646A9E21230B0F9800E48806 /* AppDelegate.swift */,
 				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
-				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
 				64CA26D6230CD97E001494ED /* LoginRequest.swift */,
 				646A9E25230B0F9800E48806 /* Main.storyboard */,
 				646A9E28230B0F9A00E48806 /* Assets.xcassets */,
@@ -94,11 +101,16 @@
 				64B9C5E523162E6B0067F564 /* StudentLocationResponse.swift */,
 				64B9C5E723162E920067F564 /* StudentResultsResponse.swift */,
 				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
-				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
-				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
 				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
+				6488E5912327EF5900406FD8 /* updateLocationClient.swift */,
+				6488E5932328421000406FD8 /* updateLocStruct.swift */,
+				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
+				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64A52C562318880F000C2B1A /* AddLocationClient.swift */,
+				6431AAEB232D56FF0066F3AF /* DeleteClient.swift */,
+				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
+				6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";
@@ -174,6 +186,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6488E5922327EF5900406FD8 /* updateLocationClient.swift in Sources */,
+				6431AAEE232E0C7B0066F3AF /* LogoutRequest.swift in Sources */,
 				646A9E24230B0F9800E48806 /* LoginViewController.swift in Sources */,
 				646A9E22230B0F9800E48806 /* AppDelegate.swift in Sources */,
 				647F70902312F3BC00598FAB /* LoginResponse.swift in Sources */,
@@ -183,6 +197,8 @@
 				64A52C572318880F000C2B1A /* AddLocationClient.swift in Sources */,
 				64CEC0CE231B78C300DD3B09 /* LocatonStruct.swift in Sources */,
 				64D33F6E231EDC5D00A7841A /* LocationTableViewController.swift in Sources */,
+				6488E5942328421000406FD8 /* updateLocStruct.swift in Sources */,
+				6431AAEC232D56FF0066F3AF /* DeleteClient.swift in Sources */,
 				64A52C55231887ED000C2B1A /* AddLocationViewController.swift in Sources */,
 				64F5FE89231494240063A8A6 /* AccountResponse.swift in Sources */,
 				64CA26D7230CD97E001494ED /* LoginRequest.swift in Sources */,

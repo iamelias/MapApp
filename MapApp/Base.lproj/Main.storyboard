@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BxY-Nt-lMZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -113,17 +113,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cTe-MW-zFJ"/>
                     <connections>
                         <outlet property="activityIndicator" destination="HcF-Cq-Vaq" id="kpn-nc-IYO"/>
                         <outlet property="emailText" destination="mH4-2t-DSv" id="zpK-cu-yCU"/>
                         <outlet property="loginButton" destination="YDy-7F-FIi" id="Bhy-mL-nM6"/>
                         <outlet property="passwordText" destination="MgT-91-30H" id="mXs-8S-eSW"/>
                         <outlet property="signUpButton" destination="BIe-4M-iVE" id="Miu-ka-V55"/>
+                        <segue destination="BxY-Nt-lMZ" kind="show" identifier="pushLogin" id="TZp-B4-Ph9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="59.11330049261084"/>
+            <point key="canvasLocation" x="1239" y="61"/>
         </scene>
         <!--TableViewController-->
         <scene sceneID="Cma-fp-Rff">
@@ -178,25 +180,37 @@
                     </view>
                     <navigationItem key="navigationItem" title="On the Map" id="68b-3F-qnd">
                         <barButtonItem key="backBarButtonItem" title="Logout" id="noj-cr-Cth"/>
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="MMb-bj-B4f"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uwX-cw-gkg">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="MMb-bj-B4f">
                             <connections>
-                                <segue destination="5kj-L5-nQw" kind="presentation" id="VCQ-MZ-uyT"/>
+                                <action selector="logoutTapped:" destination="0Ao-pa-ljz" id="NBX-2c-3xr"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="uwX-cw-gkg">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="0Ao-pa-ljz" id="wqT-MX-qH9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="HcL-uX-500">
+                                <connections>
+                                    <action selector="refreshTapped:" destination="0Ao-pa-ljz" id="7Cx-fg-N7k"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="Table" destination="GHk-Tl-oIn" id="Uzm-ys-gPI"/>
+                        <outlet property="logoutButton" destination="MMb-bj-B4f" id="ODf-Ky-CHm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jxl-1n-2To" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3072.8000000000002" y="385.71428571428572"/>
+            <point key="canvasLocation" x="4015.1999999999998" y="385.71428571428572"/>
         </scene>
         <!--AddLocationController-->
         <scene sceneID="gXH-tb-euc">
             <objects>
-                <viewController id="5kj-L5-nQw" userLabel="AddLocationController" customClass="AddLocationViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryLoca" id="5kj-L5-nQw" userLabel="AddLocationController" customClass="AddLocationViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jgk-eK-6s8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,12 +308,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiB-2L-Uvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4122.3999999999996" y="385.71428571428572"/>
+            <point key="canvasLocation" x="5064.8000000000002" y="385.71428571428572"/>
         </scene>
         <!--MapViewController-->
         <scene sceneID="5cm-Kq-umO">
             <objects>
-                <viewController storyboardIdentifier="MapView" id="Bhs-ik-jvb" userLabel="MapViewController" customClass="MapViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapCon" id="Bhs-ik-jvb" userLabel="MapViewController" customClass="MapViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ecW-Oc-7gx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,11 +331,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="On the Map" id="0cv-Jw-teH">
                         <barButtonItem key="backBarButtonItem" title="Logout" id="XQP-gr-F8J"/>
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="f77-hR-Kt1"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="f77-hR-Kt1">
+                            <connections>
+                                <action selector="logoutTapped:" destination="Bhs-ik-jvb" id="f7X-fM-xwo"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="VSv-Q6-JCT">
                                 <connections>
-                                    <segue destination="5kj-L5-nQw" kind="presentation" id="NdR-4K-eEM"/>
+                                    <action selector="addButtonTapped:" destination="Bhs-ik-jvb" id="LMn-fl-UM8"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="0XH-7n-4Ez">
@@ -332,18 +350,19 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="f77-hR-Kt1" id="8W3-9F-rxy"/>
                         <outlet property="mapView" destination="w6t-z9-5pa" id="3OZ-xi-Izv"/>
                         <outlet property="refreshButton" destination="0XH-7n-4Ez" id="0ZG-1g-Qfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hhn-Ha-EbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3072.8000000000002" y="-263.79310344827587"/>
+            <point key="canvasLocation" x="4015.1999999999998" y="-263.79310344827587"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yhl-14-qa2">
             <objects>
-                <tabBarController id="BxY-Nt-lMZ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="accessTab" id="BxY-Nt-lMZ" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2tH-HB-pi9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -356,7 +375,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ff9-ME-42R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="61"/>
+            <point key="canvasLocation" x="2186.4000000000001" y="60.591133004926114"/>
         </scene>
         <!--Map-->
         <scene sceneID="UEA-Te-HTR">
@@ -375,7 +394,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jga-l6-ZWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163.768115942029" y="-263.16964285714283"/>
+            <point key="canvasLocation" x="3104.8000000000002" y="-263.79310344827587"/>
         </scene>
         <!--List-->
         <scene sceneID="rP2-ec-ZOz">
@@ -394,7 +413,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R36-Ku-F0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163.768115942029" y="385.71428571428572"/>
+            <point key="canvasLocation" x="3104.8000000000002" y="385.71428571428572"/>
         </scene>
     </scenes>
     <resources>
@@ -406,7 +425,4 @@
         <image name="icon_pin" width="24" height="24"/>
         <image name="inverseRectangle" width="95" height="54"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="NdR-4K-eEM"/>
-    </inferredMetricsTieBreakers>
 </document>

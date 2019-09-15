@@ -52,9 +52,19 @@ class LoginViewController: UIViewController {
         
         if success {
             print(UdacityClient.Auth.sessionId)
+            performSegue(withIdentifier: "pushLogin", sender: nil)
         }
-
+        else { print("Failure")
+            
+        }
+        
+//        let nextController = self.storyboard!.instantiateViewController(withIdentifier: "accessTab") as! UITabBarController
+//
+//        self.navigationController!.pushViewController(nextController,animated: true)
+        
     }
+    
+
     
     func handleSessionResponse(success: Bool, error: Error?) {
         

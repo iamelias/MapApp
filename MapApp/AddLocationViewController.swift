@@ -20,8 +20,10 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var addButton: UIButton!
     
     var userAddedLocation: String = ""
+    var userTransferURL: String = ""
     var userTransferLat: Double = 0
     var userTransferLon: Double = 0
+    
     
     //var delegate = MKMapViewDelegate.self
     
@@ -64,6 +66,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 
                 let addedLocation = "\(name),\(region)" //\(country)
                 self.userAddedLocation = addedLocation
+                self.userTransferURL = self.URLText.text!
                 print(addedLocation)
                 
                 
@@ -87,9 +90,17 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBAction func addTapped(_ sender: Any)
     {
         
+        var updateTester = false
+        updateTester = AddLocationClient.ObjectData.ObjectIdent
+        print(updateTester)
+        if updateTester == false {
         AddLocationClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+        }
         
-        
+        else {
+        updateLocationClient.update(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+            
+        }
         
         
         //        addButton.isHidden = true
@@ -135,12 +146,14 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
 
     override func viewWillDisappear(_ animated: Bool) {
+        
 
     }
 
     
     func handleGeoResponse(success: Bool, error: Error?) {
        
+        print("made it to handleGeo")
 //        self.dismiss(animated: true, completion: nil) //returns to map/table view
         
     }
