@@ -363,6 +363,7 @@
         <scene sceneID="yhl-14-qa2">
             <objects>
                 <tabBarController storyboardIdentifier="accessTab" id="BxY-Nt-lMZ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="chq-2f-2EL"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2tH-HB-pi9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
