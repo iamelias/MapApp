@@ -15,6 +15,11 @@ class LoginViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var loginButton: UIButton!
     
+    enum LoginError: Error {
+        case first(message: String)
+        case second(message: String)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,50 +29,43 @@ class LoginViewController: UIViewController {
         passwordText.leftView = passWordPadding
         emailText.leftViewMode = .always
         passwordText.leftViewMode = .always
-   }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        activityIndicator.isHidden = true //initially keeping activityIndicatior hidden
-        emailText.text = "" //clearing email and password textfields for logout
-        passwordText.text = ""
+    clearView()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-                loggingIn(true) //login animation control //later try and set to false
-                DispatchQueue.main.async {
-                print("made it login tapped")
-                    UdacityClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
-        
-    }
-    }
-    
-    
-
-    @IBAction func signUpTapped(_ sender: Any) {
-        let app = UIApplication.shared
-         app.open(URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!, options: [:], completionHandler: nil)
+        loggingIn(true) //login animation control //later try and set to false
+        DispatchQueue.main.async {
+            print("made it login tapped")
+            UdacityClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
+        }
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {
-        
         if success {
-            print(UdacityClient.Auth.sessionId)
+            print(AuthStruct.sessionId)
+            performSegue(withIdentifier: "pushLogin", sender: nil)
         }
-
-    }
-    
-    func handleSessionResponse(success: Bool, error: Error?) {
+        else {
+            print("********************: \(String(describing: error))")
+            loginFail(message: ErrorDataStruct.ErrorMessage ?? "Connection Issue" )
+        }
+        
+        self.loggingIn(false)
+        self.clearView()
         
     }
     
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
+    func loginFail(message: String) {
+        let alertBox = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertBox.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        show(alertBox, sender: nil)
+        
     }
-
+    
     func loggingIn(_ login: Bool) { //UI changing function
-        
         activityIndicator.isHidden = !login //activity controller appears when login is tapped
         if login {
             activityIndicator.startAnimating()
@@ -75,14 +73,25 @@ class LoginViewController: UIViewController {
         else {
             activityIndicator.stopAnimating()
         }
-
+        
         emailText.isEnabled = !login //disabling textfields and buttons
         passwordText.isEnabled = !login
         loginButton.isEnabled = !login
         signUpButton.isEnabled = !login
-
     }
-
+    
+    func clearView() {
+        activityIndicator.isHidden = true //initially keeping activityIndicatior hidden
+        loggingIn(false)
+        emailText.text = "" //clearing email and password textfields for logout
+        passwordText.text = ""
+    }
+    
+    
+    @IBAction func signUpTapped(_ sender: Any) {
+        let app = UIApplication.shared
+        app.open(URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!, options: [:], completionHandler: nil)
+    }
 }
 
 

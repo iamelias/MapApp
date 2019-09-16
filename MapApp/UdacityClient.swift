@@ -10,12 +10,12 @@ import Foundation
 
 class UdacityClient {
     
-    struct Auth {
-        static var sessionId = ""
-        static var key = ""
-        static var registered = true
-        static var expiration = ""
-    }
+//    struct Auth {
+//        static var sessionId = ""
+//        static var key = ""
+//        static var registered = true
+//        static var expiration = ""
+//    }
     
     class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/session")!) //Base + Endpoint
@@ -25,9 +25,19 @@ class UdacityClient {
         request.httpBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".data(using: .utf8) //body to be passed
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in //making post request with "request" object
-            if error != nil { // Handle error…
-                completion(false, nil)
-                return
+            
+            DispatchQueue.main.async {
+//            if error != nil { // Handle error…
+//                completion(false, error) //if there is an error in the username or password
+//                }
+//                return
+                
+                guard error == nil else {
+                    print("error calling GET on /todos/1")
+                    print(response!)
+                    return
+                }
+                
             }
             
             do { //Attempt to Parse Authentication Data
@@ -38,6 +48,24 @@ class UdacityClient {
                 print(String(data: newData!, encoding: .utf8)!) //printing Data for testing
                 
                 let decoder = JSONDecoder() //using JSON Decoder for parsing
+                do {
+                let loginResponseObject2 = try decoder.decode(LoginErrorResponse.self, from: newData!) //parsing. LoginResponse
+                print("Status Code: \(loginResponseObject2.statusCode)")
+                print("Status Code: \(loginResponseObject2.errorMessage)")
+                    ErrorDataStruct.ErrorStatus = loginResponseObject2.statusCode
+                    ErrorDataStruct.ErrorMessage = loginResponseObject2.errorMessage
+                    
+                    DispatchQueue.main.async {
+                        
+                        completion(false,nil)
+                        
+                    }
+                    return
+                }
+                
+                catch {
+
+                }
                 let loginResponseObject = try decoder.decode(LoginResponse.self, from: newData!) //parsing. LoginResponse uses AccountResponse and SessionResponse
                 //print("sucessfully parsed auth data")
                 print("This is the Key: \(loginResponseObject.account.key)")//Testing parsed constants in structs
@@ -45,10 +73,15 @@ class UdacityClient {
                 print("This is Expiration: \(loginResponseObject.session.expiration)")
                 print("This is the id: \(loginResponseObject.session.id)")
                 
-                Auth.sessionId = loginResponseObject.session.id
-                Auth.key = loginResponseObject.account.key
-                Auth.registered = loginResponseObject.account.registered
-                Auth.expiration = loginResponseObject.session.expiration
+                AuthStruct.sessionId = loginResponseObject.session.id
+                AuthStruct.key = loginResponseObject.account.key
+                AuthStruct.registered = loginResponseObject.account.registered
+                AuthStruct.expiration = loginResponseObject.session.expiration
+                
+//                Auth.sessionId = loginResponseObject.session.id
+//                Auth.key = loginResponseObject.account.key
+//                Auth.registered = loginResponseObject.account.registered
+//                Auth.expiration = loginResponseObject.session.expiration
                 
                 DispatchQueue.main.async {
                     
@@ -58,9 +91,13 @@ class UdacityClient {
                 
             }
             catch { // If Parsing Fails...
-                print("Parsing failure")
-                completion(false,nil)
                 
+                
+                print("Parsing failure")
+                DispatchQueue.main.async {
+
+                completion(false,nil)
+                }
             }
             
         }
