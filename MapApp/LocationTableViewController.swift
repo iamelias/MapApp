@@ -105,6 +105,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func handleGetTableResponse(success: Bool, error: Error?) {
+
         print("I got here")
     }
     

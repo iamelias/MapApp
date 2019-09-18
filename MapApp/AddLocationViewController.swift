@@ -18,6 +18,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var addLocationMap: MKMapView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var userAddedLocation: String = ""
     var userTransferURL: String = ""
@@ -31,6 +32,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         addLocationMap.isHidden = true
         addButton.isHidden = true
+        activityIndicator.isHidden = true
         
     }
     @IBAction func cancelTapped(_ sender: Any) {
@@ -39,6 +41,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
+        activityIndicRun(true)
         let address = LocationText.text!
         let geocode = CLGeocoder()
         geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) { return}
@@ -80,16 +83,14 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 self.addLocationMap.addAnnotation(annotation)
                 self.UIChange()
                 
-
                 
         }
+
         })
-        
 }
     
     @IBAction func addTapped(_ sender: Any)
     {
-        
         var updateTester = false
         updateTester = AddLocationClient.ObjectData.ObjectIdent
         print(updateTester)
@@ -121,7 +122,15 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         LocationText.isHidden = true
         URLText.isHidden = true
         FindButton.isHidden = true
+        activityIndicRun(false)
+        
+        
     }
+    
+//    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+//        activityIndicRun(false)
+//    }
+    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //creating pin Image
         let reuseIdentifier = "mapPin" // declaring reuse identifier
@@ -155,6 +164,18 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
        
         print("made it to handleGeo")
 //        self.dismiss(animated: true, completion: nil) //returns to map/table view
+        
+    }
+    
+    func activityIndicRun(_ login: Bool) { //UI changing function
+        activityIndicator.isHidden = !login //activity controller appears when login is tapped
+        print("activity controller is working")
+        if login {
+            activityIndicator.startAnimating()
+        }
+        else {
+            activityIndicator.stopAnimating()
+        }
         
     }
     

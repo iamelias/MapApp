@@ -106,7 +106,6 @@
 				64B9C5E523162E6B0067F564 /* StudentLocationResponse.swift */,
 				64B9C5E723162E920067F564 /* StudentResultsResponse.swift */,
 				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
-				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
 				6488E5912327EF5900406FD8 /* updateLocationClient.swift */,
 				6488E5932328421000406FD8 /* updateLocStruct.swift */,
 				6431AAEB232D56FF0066F3AF /* DeleteClient.swift */,
@@ -114,12 +113,13 @@
 				64F45D70232F558A0058A237 /* LoginErrorResponse.swift */,
 				64F45D72233003320058A237 /* ErrorDataStruct.swift */,
 				64F45D7823303AF60058A237 /* AuthStruct.swift */,
-				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
 				64A52C562318880F000C2B1A /* AddLocationClient.swift */,
 				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
 				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
 				64A52C58231896C9000C2B1A /* MapViewController.swift */,
 				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
+				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
+				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";
