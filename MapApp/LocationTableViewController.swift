@@ -108,7 +108,10 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
         print("I got here")
     }
     
-    
+    func downloadFail() {
+        let alert = UIAlertController(title: "Download Failed", message: "Failed to retrieve student locations", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    }
     
     
 

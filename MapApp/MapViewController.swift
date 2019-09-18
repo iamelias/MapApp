@@ -19,17 +19,37 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     static var refreshIndicator: Int = 0 //0 is off, 1 is on
+    static var errorHandler = false //error handler is on
     var mapChecker: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        
+        guard MapViewController.errorHandler == false else { //errorHandler is off or return
+            print("ViewDidLoad guard")
+            return
+        }
+       GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         //print("I'm back in MapViewController")
-    }
+        }
+
+    
     
     override func viewDidAppear(_ animated: Bool) {
-//        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        
+        guard MapViewController.errorHandler == false else { //if off continue, if on execute within braces
+            if MapViewController.errorHandler == true {
+                downloadFail()
+                MapViewController.errorHandler = true
+                print("ViewDidAppear inside guard")
+            }
+            
+            print("ViewDid Appear outside guard")
+            return
+            
+        }
+        
         if MapViewController.refreshIndicator == 1 { //if refresh is on, ignore if not on
             refresh(inMap: true)
             print("refreshIndicator: 1")
@@ -38,6 +58,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         else {
             print("refresh Indicator is still 0")
         }
+        
+
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -109,11 +131,26 @@ class MapViewController: UIViewController, MKMapViewDelegate {
              GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
         }
         
-
+    }
+    
+    func downloadFail() {
+        print("I got to download fail")
+        let alert = UIAlertController(title: "Download Failed", message: "The student locations failed to download", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+       //self.show(alert, sender: nil)
         
+        return
     }
     
     func handleGetLocationResponse(success: Bool, error: Error?) {
+        if !success {
+            MapViewController.errorHandler = true
+            
+        }
+        
+        else {
+        
         //let LocationDataStruct = GetStudentLocation().getStructData()
         if mapView != nil {
         MapViewController().makeAnnotations() //calling function that makes annotations for pin
@@ -121,8 +158,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
          self.mapView.addAnnotations(MapViewController.myAnnotations)  //adding all annotations to map
         }
     }
+    }
     
     func makeAnnotations() {
+        
+//        guard DataHoldStruct.ResponseDataArray != nil else {
+//            downloadFail()
+//            return
+//        }
         var mylocations = DataHoldStruct.ResponseDataArray//GetStudentLocation.ResponseData //getting all api objects
               // print(mylocations) //Testing Data retrievel
         //        print(mylocation.count) //Testing mapObject count
