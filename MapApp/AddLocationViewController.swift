@@ -41,10 +41,20 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
-        activityIndicRun(true)
+        activityIndicRun(true) //starting the activity indicator
         let address = LocationText.text!
         let geocode = CLGeocoder()
-        geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) { return}
+        geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) {
+           
+            let alert = UIAlertController(title: "Geocoding Failed", message: "Cannot present the location", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            self.activityIndicator.isHidden = true
+            
+            return
+            
+            }
+            
             if let placemark = placemarks?[0]  {
                 let lat = placemark.location!.coordinate.latitude
                 let transferLat = Double(lat)
@@ -103,15 +113,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             
         }
         
-        
-        //        addButton.isHidden = true
-        //        addLocationMap.isHidden = true
-        //        LocationText.isHidden = false
-        //        URLText.isHidden = false
-        //        FindButton.isHidden = false
-        //
-        MapViewController.refreshIndicator = 1
-        self.dismiss(animated: true, completion: nil)
+
         
     }
     
@@ -160,11 +162,21 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
 
     
-    func handleGeoResponse(success: Bool, error: Error?) {
+    func handleGeoResponse(success: Bool, error: Error?) { //if there is a problem posting to database
        
         print("made it to handleGeo")
-//        self.dismiss(animated: true, completion: nil) //returns to map/table view
+        if success == false {
+            let alert = UIAlertController(title: "Error: Posting Failed", message: "Cannot post the location", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+            return
+        }
         
+        else {
+        print("Successfull posting to database from AddLocationViewController")
+            MapViewController.refreshIndicator = 1
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func activityIndicRun(_ login: Bool) { //UI changing function
