@@ -189,7 +189,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             first = mylocations[mapObject].firstName
             last = mylocations[mapObject].lastName
-            mediaURL = mylocations[mapObject].mediaURL
+            mediaURL = mylocations[mapObject].mediaURL!
             
             let annotation = MKPointAnnotation() //creating/defining mapkit annotation
             annotation.coordinate = coordinate // giving annotation its info
@@ -228,10 +228,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) { //this method opens URL in safari
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
-            if let studentURL = view.annotation?.subtitle! {
-                app.open(URL(string: studentURL)!, options: [:], completionHandler: nil)
+            //******************
+            
+            guard let url = URL(string: (view.annotation?.subtitle!)!) else {
+                return
+            }
+            app.open(url, options: [:], completionHandler: nil)
+
             }
         }
     }
     
-}
+

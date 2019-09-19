@@ -141,7 +141,10 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var tableRowLabel = DataHoldStruct.ResponseDataArray
         let app = UIApplication.shared
-        app.open(URL(string: tableRowLabel[indexPath.row].mediaURL)!, options: [:], completionHandler: nil)
-
+        
+        guard let url = URL(string: tableRowLabel[indexPath.row].mediaURL!) else {
+            return
+        }
+            app.open(url, options: [:], completionHandler: nil)
 }
 }
