@@ -67,7 +67,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func addButtonTapped(_ sender: Any) {
         
         var updateTester = false
-        updateTester = AddLocationClient.ObjectData.ObjectIdent //either change to false or keep true
+        updateTester = AddStudentClient.ObjectData.ObjectIdent //either change to false or keep true
         
         guard !updateTester else {
             

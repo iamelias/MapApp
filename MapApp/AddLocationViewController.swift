@@ -102,10 +102,10 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBAction func addTapped(_ sender: Any)
     {
         var updateTester = false
-        updateTester = AddLocationClient.ObjectData.ObjectIdent
+        updateTester = AddStudentClient.ObjectData.ObjectIdent
         print(updateTester)
         if updateTester == false {
-        AddLocationClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+        AddStudentClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
         }
         
         else {
