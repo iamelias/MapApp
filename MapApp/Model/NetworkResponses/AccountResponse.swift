@@ -13,9 +13,4 @@ struct AccountResponse: Codable {
     let registered: Bool
     let key: String
     
-    enum CodingKeys: String,  CodingKey {
-        case registered
-        case key 
-    }
-    
 }

@@ -21,21 +21,5 @@ struct resultsResponse: Codable {
     var createdAt: String?
     var updatedAt: String?
     
-    
-    enum CodingKeys: String, CodingKey {
-        
-        
-        case firstName
-        case lastName
-        case longitude
-        case latitude
-        case mapString
-        case mediaURL
-        case uniqueKey
-        case objectId
-        case createdAt
-        case updatedAt
-        
-    }
 }
 

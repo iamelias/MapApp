@@ -10,12 +10,7 @@ import Foundation
 
 struct StudentLocationResponse: Codable {
     
-    var results: [resultsResponse]
-    
-    enum CodingKeys: String, CodingKey {
-       
-        case results
-    }
+    var results: [resultsResponse] //array that saves parsed student info
     
     }
 

@@ -11,7 +11,6 @@ import MapKit
 
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-    
     static var myAnnotations: [MKPointAnnotation] = [] // class property holding annotations for multi-method access
     
     @IBOutlet weak var mapView: MKMapView!
@@ -19,22 +18,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     static var refreshIndicator: Int = 0 //0 is off, 1 is on
-    static var errorHandler = false //error handler is on
-    var mapChecker: Bool = true
+    static var errorHandler = false //for download error, initally off
+    var mapChecker: Bool = true //checking if I'm in mapViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         guard MapViewController.errorHandler == false else { //errorHandler is off or return
-            print("ViewDidLoad guard")
+            // print("ViewDidLoad guard")
             return
         }
-       GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         //print("I'm back in MapViewController")
-        }
-
-    
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -42,32 +39,26 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if MapViewController.errorHandler == true {
                 downloadFail()
                 MapViewController.errorHandler = true
-                print("ViewDidAppear inside guard")
             }
-            
-            print("ViewDid Appear outside guard")
             return
-            
         }
         
-        if MapViewController.refreshIndicator == 1 { //if refresh is on, ignore if not on
+        if MapViewController.refreshIndicator == 1 { //if refresh is on refresh, ignore if not on
             refresh(inMap: true)
-            print("refreshIndicator: 1")
+            //print("refreshIndicator: 1")
             MapViewController.refreshIndicator = 0 //turning off refresh
         }
         else {
-            print("refresh Indicator is still 0")
+            //  print("refresh Indicator is still 0")
         }
         
-
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
-        
         var updateTester = false
-            updateTester = AddStudentClient.ObjectData.ObjectIdent //either change to false or keep true
+        updateTester = AddStudentClient.ObjectData.ObjectIdent //either change to false or keep true
         
-        guard !updateTester else {
+        guard !updateTester else { //if updating instead of adding for first time
             
             let alert = UIAlertController(title: "Update", message: "Do you want to update your location?", preferredStyle: .alert)
             
@@ -77,12 +68,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 self.present(AddLocationViewController, animated: true, completion: nil) //calling AddViewController modualy
                 
-                print("alert is ok")
+                //   print("alert is ok")
                 
             })
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in print("cancel was tapped")
-                
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in //print("cancel was tapped")
                 return
             })
             
@@ -94,80 +84,68 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             return
         }
         
-        
         let AddLocationViewController:UIViewController = UIStoryboard(name: "Main", bundle:  nil).instantiateViewController(withIdentifier: "StoryLoca") as UIViewController
         
         self.present(AddLocationViewController, animated: true, completion: nil) //calling AddViewController modualy
         
     }
     
-    @IBAction func refreshTapped(_ sender: Any) {
-        
+    @IBAction func refreshTapped(_ sender: Any) { //if refresh button is tapped call refresh function
         refresh(inMap: true)
-
+        
     }
     @IBAction func logoutTapped(_ sender: Any) {
-        
-          DeleteClient.DeleteSession {
-        DispatchQueue.main.async {
-        print("made it to logoutTapped")
-            self.dismiss(animated: true, completion: nil)
+        DeleteClient.DeleteSession { //Deauthenticating
+            DispatchQueue.main.async {
+                //print("made it to logoutTapped")
+                self.dismiss(animated: true, completion: nil) //returning to loginScreen
+            }
         }
-        }
-        
-        print("Logged out from MapView")
         
     }
     
-    func refresh (inMap: Bool) {
-        print("refreshed")
+    func refresh (inMap: Bool) { //refresh function refreshes MapViewController/TableViewController
         
         if inMap { //if accessing from map controller
-        mapView.removeAnnotations(MapViewController.myAnnotations)
-        GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
+            mapView.removeAnnotations(MapViewController.myAnnotations)
+            GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         }
-        
+            
         else {
-             GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
+            GetStudentLocationClient.getStudentLocations(completion: LocationTableViewController().handleGetTableResponse(success: error:)) //running GetStudentLocation client to get location object data
         }
         
     }
     
-    func downloadFail() {
-        print("I got to download fail")
+    func downloadFail() { //called if there is a download fail in client
+        //   print("I got to download fail")
         let alert = UIAlertController(title: "Download Failed", message: "The student locations failed to download", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
-       //self.show(alert, sender: nil)
         
         return
     }
     
     func handleGetLocationResponse(success: Bool, error: Error?) {
         if !success {
-            MapViewController.errorHandler = true
+            MapViewController.errorHandler = true //For setting error handler for error alert
             
         }
-        
+            
         else {
-        
-        //let LocationDataStruct = GetStudentLocation().getStructData()
-        if mapView != nil {
-        MapViewController().makeAnnotations() //calling function that makes annotations for pin
-        //print(MapViewController.myAnnotations) Testing annotations stored in class property successfully
-         self.mapView.addAnnotations(MapViewController.myAnnotations)  //adding all annotations to map
+            
+            if mapView != nil {
+                MapViewController().makeAnnotations() //calling function that makes annotations for pin
+                //print(MapViewController.myAnnotations) Testing annotations stored in class property successfully
+                self.mapView.addAnnotations(MapViewController.myAnnotations)  //adding all annotations to map
+            }
         }
-    }
     }
     
     func makeAnnotations() {
         
-//        guard DataHoldStruct.ResponseDataArray != nil else {
-//            downloadFail()
-//            return
-//        }
         var mylocations = DataHoldStruct.ResponseDataArray//GetStudentLocation.ResponseData //getting all api objects
-              // print(mylocations) //Testing Data retrievel
+        // print(mylocations) //Testing Data retrievel
         //        print(mylocation.count) //Testing mapObject count
         
         var annotationsArray = [MKPointAnnotation]() //holding annotations
@@ -209,8 +187,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let reuseIdentifier = "mapPin" // declaring reuse identifier
         
         var pinImage: MKPinAnnotationView? = nil
-             pinImage = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView
-
+        pinImage = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView
+        
         if pinImage == nil {
             pinImage = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinImage!.canShowCallout = true //making box appear when pin is tapped
@@ -224,19 +202,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return pinImage //returning the pin image/view
     }
     
-    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) { //this method opens URL in safari
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
-            //******************
             
             guard let url = URL(string: (view.annotation?.subtitle!)!) else {
                 return
             }
             app.open(url, options: [:], completionHandler: nil)
-
-            }
         }
     }
-    
+}
+
 

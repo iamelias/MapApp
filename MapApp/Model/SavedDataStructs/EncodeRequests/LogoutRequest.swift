@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LogoutRequest: Codable {
+struct LogoutRequest: Codable { //Used in DeleteClient.swift
     let sessionId: String
 }
 

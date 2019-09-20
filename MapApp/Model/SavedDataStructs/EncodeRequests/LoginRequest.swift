@@ -19,7 +19,4 @@ struct LoginRequest: Codable {
         case password
         
     }
-
-
-
 }

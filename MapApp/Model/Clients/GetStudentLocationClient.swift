@@ -9,8 +9,6 @@
 import Foundation
 class GetStudentLocationClient {
     
-    //static var ResponseData: [resultsResponse] = []  //contains student locations
-    
     class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
         
         let locationsEndpointRequest = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=-updatedAt")!) //number of object returned= 100, returned in reversed order from most recent entry-> first entry
@@ -36,33 +34,23 @@ class GetStudentLocationClient {
             do {
                 
                 let myResponseObjects = try decoder.decode(StudentLocationResponse.self, from: data!) //parsing
-                let myResponseObjects2 = myResponseObjects
-                 print("parsing successful")
+                // print("parsing successful")
                 // print(myResponseObjects)
-                 print("Reached 4")
                 
-                //GetStudentLocation.ResponseData = myResponseObjects.results //storing into results ResponseData property
-                DataHoldStruct.ResponseDataArray = myResponseObjects2.results //saving data using LocationStruct.swift
+                DataHoldStruct.ResponseDataArray = myResponseObjects.results //saving data to array
                 
                 DispatchQueue.main.async {
-                    
                     completion(true,nil)
-                    
                 }
-                
             }
                 
             catch {
                 DispatchQueue.main.async {
-                print("parsing failed")
+                //print("parsing failed")
                 completion(false, nil)
                 }
             }
-            
         }
-        
         task.resume()
-        
     }
-    
 }
