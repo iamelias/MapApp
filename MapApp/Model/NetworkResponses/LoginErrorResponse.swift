@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LoginErrorResponse: Codable {
+struct LoginErrorResponse: Codable { // If login fails the error is parsed for alert
     
     let statusCode: Int
     let errorMessage: String

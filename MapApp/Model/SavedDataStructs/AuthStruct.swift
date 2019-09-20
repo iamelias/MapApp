@@ -8,12 +8,10 @@
 
 import Foundation
 
-struct AuthStruct {
+struct AuthStruct { //Saving parsed Authorization response
    
         static var sessionId = ""
         static var key = ""
         static var registered = true
         static var expiration = ""
-        
-    
 }

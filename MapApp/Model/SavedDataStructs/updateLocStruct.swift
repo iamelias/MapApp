@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct updateLocStruct: Codable {
+struct updateLocStruct: Codable { //parsedResponse from AddStudentClient
     var createdAt: String
     var objectId: String
 }

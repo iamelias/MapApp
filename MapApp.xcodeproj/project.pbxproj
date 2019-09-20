@@ -75,6 +75,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		641943D423347EEE003C6F20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				643482AF233582B2009C01F7 /* Clients */,
+				643482AD23358228009C01F7 /* NetworkResponses */,
+				643482AE23358253009C01F7 /* SavedDataStructs */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		641943D523347F06003C6F20 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
+				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
+				64A52C58231896C9000C2B1A /* MapViewController.swift */,
+				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		643482AD23358228009C01F7 /* NetworkResponses */ = {
+			isa = PBXGroup;
+			children = (
+				647F708F2312F3BC00598FAB /* LoginResponse.swift */,
+				64F5FE88231494240063A8A6 /* AccountResponse.swift */,
+				64F5FE8A231494320063A8A6 /* SessionResponse.swift */,
+				64F45D70232F558A0058A237 /* LoginErrorResponse.swift */,
+				64B9C5E523162E6B0067F564 /* StudentLocationResponse.swift */,
+				64B9C5E723162E920067F564 /* StudentResultsResponse.swift */,
+			);
+			path = NetworkResponses;
+			sourceTree = "<group>";
+		};
+		643482AE23358253009C01F7 /* SavedDataStructs */ = {
+			isa = PBXGroup;
+			children = (
+				64F45D7823303AF60058A237 /* AuthStruct.swift */,
+				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
+				6488E5932328421000406FD8 /* updateLocStruct.swift */,
+				64F45D72233003320058A237 /* ErrorDataStruct.swift */,
+				643482B02335848D009C01F7 /* EncodeRequests */,
+			);
+			path = SavedDataStructs;
+			sourceTree = "<group>";
+		};
+		643482AF233582B2009C01F7 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
+				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
+				641943D2233459F7003C6F20 /* AddStudentClient.swift */,
+				6488E5912327EF5900406FD8 /* updateLocationClient.swift */,
+				6431AAEB232D56FF0066F3AF /* DeleteClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		643482B02335848D009C01F7 /* EncodeRequests */ = {
+			isa = PBXGroup;
+			children = (
+				64CA26D6230CD97E001494ED /* LoginRequest.swift */,
+				6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */,
+			);
+			path = EncodeRequests;
+			sourceTree = "<group>";
+		};
 		646A9E15230B0F9800E48806 = {
 			isa = PBXGroup;
 			children = (
@@ -95,31 +162,12 @@
 			isa = PBXGroup;
 			children = (
 				646A9E21230B0F9800E48806 /* AppDelegate.swift */,
-				64CA26D6230CD97E001494ED /* LoginRequest.swift */,
 				646A9E25230B0F9800E48806 /* Main.storyboard */,
 				646A9E28230B0F9A00E48806 /* Assets.xcassets */,
 				646A9E2A230B0F9A00E48806 /* LaunchScreen.storyboard */,
 				646A9E2D230B0F9A00E48806 /* Info.plist */,
-				647F708F2312F3BC00598FAB /* LoginResponse.swift */,
-				64F5FE88231494240063A8A6 /* AccountResponse.swift */,
-				64F5FE8A231494320063A8A6 /* SessionResponse.swift */,
-				64B9C5E523162E6B0067F564 /* StudentLocationResponse.swift */,
-				64B9C5E723162E920067F564 /* StudentResultsResponse.swift */,
-				64CEC0CD231B78C300DD3B09 /* LocatonStruct.swift */,
-				6488E5912327EF5900406FD8 /* updateLocationClient.swift */,
-				6488E5932328421000406FD8 /* updateLocStruct.swift */,
-				6431AAEB232D56FF0066F3AF /* DeleteClient.swift */,
-				6431AAED232E0C7B0066F3AF /* LogoutRequest.swift */,
-				64F45D70232F558A0058A237 /* LoginErrorResponse.swift */,
-				64F45D72233003320058A237 /* ErrorDataStruct.swift */,
-				64F45D7823303AF60058A237 /* AuthStruct.swift */,
-				64CA26D4230CA2DA001494ED /* UdacityClient.swift */,
-				64A52C58231896C9000C2B1A /* MapViewController.swift */,
-				64D33F6D231EDC5D00A7841A /* LocationTableViewController.swift */,
-				646A9E23230B0F9800E48806 /* LoginViewController.swift */,
-				646952C823174BB4003871C4 /* GetStudentLocationClient.swift */,
-				641943D2233459F7003C6F20 /* AddStudentClient.swift */,
-				64A52C54231887ED000C2B1A /* AddLocationViewController.swift */,
+				641943D423347EEE003C6F20 /* Model */,
+				641943D523347F06003C6F20 /* Controller */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";

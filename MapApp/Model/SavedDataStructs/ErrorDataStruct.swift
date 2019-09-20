@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorDataStruct {
+struct ErrorDataStruct { //Struct saving results of parsed status and message
     static var ErrorStatus: Int? 
     static var ErrorMessage: String?
 }
