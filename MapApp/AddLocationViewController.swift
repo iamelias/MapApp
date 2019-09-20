@@ -18,6 +18,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var addLocationMap: MKMapView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var userAddedLocation: String = ""
     var userTransferURL: String = ""
@@ -31,6 +32,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         addLocationMap.isHidden = true
         addButton.isHidden = true
+        activityIndicator.isHidden = true
         
     }
     @IBAction func cancelTapped(_ sender: Any) {
@@ -39,9 +41,20 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
+        activityIndicRun(true) //starting the activity indicator
         let address = LocationText.text!
         let geocode = CLGeocoder()
-        geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) { return}
+        geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) {
+           
+            let alert = UIAlertController(title: "Geocoding Failed", message: "Cannot present the location", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            self.activityIndicator.isHidden = true
+            
+            return
+            
+            }
+            
             if let placemark = placemarks?[0]  {
                 let lat = placemark.location!.coordinate.latitude
                 let transferLat = Double(lat)
@@ -80,21 +93,19 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 self.addLocationMap.addAnnotation(annotation)
                 self.UIChange()
                 
-
                 
         }
+
         })
-        
 }
     
     @IBAction func addTapped(_ sender: Any)
     {
-        
         var updateTester = false
-        updateTester = AddLocationClient.ObjectData.ObjectIdent
+        updateTester = AddStudentClient.ObjectData.ObjectIdent
         print(updateTester)
         if updateTester == false {
-        AddLocationClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+        AddStudentClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
         }
         
         else {
@@ -102,15 +113,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             
         }
         
-        
-        //        addButton.isHidden = true
-        //        addLocationMap.isHidden = true
-        //        LocationText.isHidden = false
-        //        URLText.isHidden = false
-        //        FindButton.isHidden = false
-        //
-        MapViewController.refreshIndicator = 1
-        self.dismiss(animated: true, completion: nil)
+
         
     }
     
@@ -121,7 +124,15 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         LocationText.isHidden = true
         URLText.isHidden = true
         FindButton.isHidden = true
+        activityIndicRun(false)
+        
+        
     }
+    
+//    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+//        activityIndicRun(false)
+//    }
+    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //creating pin Image
         let reuseIdentifier = "mapPin" // declaring reuse identifier
@@ -151,10 +162,32 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     }
 
     
-    func handleGeoResponse(success: Bool, error: Error?) {
+    func handleGeoResponse(success: Bool, error: Error?) { //if there is a problem posting to database
        
         print("made it to handleGeo")
-//        self.dismiss(animated: true, completion: nil) //returns to map/table view
+        if success == false {
+            let alert = UIAlertController(title: "Error: Posting Failed", message: "Cannot post the location", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+            return
+        }
+        
+        else {
+        print("Successfull posting to database from AddLocationViewController")
+            MapViewController.refreshIndicator = 1
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func activityIndicRun(_ login: Bool) { //UI changing function
+        activityIndicator.isHidden = !login //activity controller appears when login is tapped
+        print("activity controller is working")
+        if login {
+            activityIndicator.startAnimating()
+        }
+        else {
+            activityIndicator.stopAnimating()
+        }
         
     }
     

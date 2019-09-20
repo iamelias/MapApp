@@ -17,7 +17,7 @@ class updateLocationClient: UIViewController {
     
   class func update(newLocation: String, newURL: String, newLatitude: Double, newLongitude: Double, completion: @escaping (Bool, Error?) -> Void ){
         
-        let currentObjectId = AddLocationClient.ObjectData.ObjectIValue
+        let currentObjectId = AddStudentClient.ObjectData.ObjectValue
         
         let urlString = "https://onthemap-api.udacity.com/v1/StudentLocation/\(currentObjectId)"
         let url = URL(string: urlString)

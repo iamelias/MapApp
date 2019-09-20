@@ -33,7 +33,7 @@ class UdacityClient {
 //                return
                 
                 guard error == nil else {
-                    print("error calling GET on /todos/1")
+                    print("error")
                     print(response!)
                     return
                 }

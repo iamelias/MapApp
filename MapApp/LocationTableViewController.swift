@@ -67,7 +67,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func addButtonTapped(_ sender: Any) {
         
         var updateTester = false
-        updateTester = AddLocationClient.ObjectData.ObjectIdent //either change to false or keep true
+        updateTester = AddStudentClient.ObjectData.ObjectIdent //either change to false or keep true
         
         guard !updateTester else {
             
@@ -105,25 +105,24 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func handleGetTableResponse(success: Bool, error: Error?) {
+
         print("I got here")
     }
     
-    
+    func downloadFail() {
+        let alert = UIAlertController(title: "Download Failed", message: "Failed to retrieve student locations", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    }
     
     
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        return DataHoldStruct.ResponseDataArray.count //defining number of cells
         
-       // print("Table Test: 1")
-        //print("Test Table row number: \(DataHoldStruct.ResponseDataArray.count)")
-        return DataHoldStruct.ResponseDataArray.count
-        
-       
+
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //print("Table Test: 2")
         var tableRowLabel = DataHoldStruct.ResponseDataArray //assigning struct that holds each student object
         //print(tableRowLabel) //Testing TableView cell data retrieved
         
@@ -137,7 +136,9 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var tableRowLabel = DataHoldStruct.ResponseDataArray
         let app = UIApplication.shared
-        app.open(URL(string: tableRowLabel[indexPath.row].mediaURL)!, options: [:], completionHandler: nil)
-
+        guard let url = URL(string: tableRowLabel[indexPath.row].mediaURL!) else {
+            return
+        }
+            app.open(url, options: [:], completionHandler: nil) //opening url when cell tapped
 }
 }
