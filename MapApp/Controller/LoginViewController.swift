@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailText: UITextField!
     @IBOutlet var passwordText: UITextField!
     @IBOutlet var signUpButton: UIButton!
@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad() //setting up login textfields
+        emailText.delegate = self
+        passwordText.delegate = self
         let emailPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0)) // padding textfields
         let passWordPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0))
         emailText.leftView = emailPadding
@@ -38,6 +40,7 @@ class LoginViewController: UIViewController {
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {
+        //ErrorDataStruct.ErrorStatus.removeAll
         if success {
            // print(AuthStruct.sessionId)
             performSegue(withIdentifier: "pushLogin", sender: nil) //push to mapview
@@ -45,6 +48,7 @@ class LoginViewController: UIViewController {
         else {
            // print("********************: \(String(describing: error))")
             loginFail(message: ErrorDataStruct.ErrorMessage ?? "Connection Issue" ) //calling loginfail alert
+            ErrorDataStruct.ErrorMessage = nil
         }
         
         self.loggingIn(false) //resetting view activations
@@ -84,6 +88,12 @@ class LoginViewController: UIViewController {
         passwordText.isEnabled = !login
         loginButton.isEnabled = !login
         signUpButton.isEnabled = !login
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+        return true
     }
 }
 

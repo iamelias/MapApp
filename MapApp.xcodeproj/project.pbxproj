@@ -166,8 +166,8 @@
 				646A9E28230B0F9A00E48806 /* Assets.xcassets */,
 				646A9E2A230B0F9A00E48806 /* LaunchScreen.storyboard */,
 				646A9E2D230B0F9A00E48806 /* Info.plist */,
-				641943D423347EEE003C6F20 /* Model */,
 				641943D523347F06003C6F20 /* Controller */,
+				641943D423347EEE003C6F20 /* Model */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";

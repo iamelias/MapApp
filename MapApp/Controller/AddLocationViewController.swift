@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddLocationViewController: UIViewController, MKMapViewDelegate {
+class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var LocationText: UITextField!
     @IBOutlet weak var URLText: UITextField!
@@ -29,6 +29,8 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() { //initial view setup
         super.viewDidLoad()
+        LocationText.delegate = self
+        URLText.delegate = self
         addLocationMap.isHidden = true //hiding post find location look
         addButton.isHidden = true
         activityIndicator.isHidden = true
@@ -166,5 +168,11 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         else {
             activityIndicator.stopAnimating()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //dismissing keyboard
+        LocationText.resignFirstResponder()
+        URLText.resignFirstResponder()
+        return true
     }
 }

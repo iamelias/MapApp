@@ -20,10 +20,17 @@ class UdacityClient { //Authentication Posting for Login
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in //making post request with "request" object
             
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    //print("error")
-                   // print(response!)
+            guard data != nil else {
+                DispatchQueue.main.async {
+                    completion(false,nil)
+                }
+                return
+            }
+            
+            if error != nil {
+                DispatchQueue.main.async {
+                ErrorDataStruct.ErrorStatus = 0
+                    completion(false, nil)
                     return
                 }
             }
