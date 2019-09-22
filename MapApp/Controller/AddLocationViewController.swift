@@ -39,6 +39,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
+        self.view.endEditing(true) //automatically dismiss keyboard
         activityIndicRun(true) //starting the activity indicator
         let address = LocationText.text!
         let geocode = CLGeocoder()
@@ -85,7 +86,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
                 annotation.title = annotationDetail
                 self.addLocationMap.addAnnotation(annotation)
                 self.UIChange() //changing objects present/hidden
-                
+
             }})
     }
     
@@ -157,6 +158,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
         else {
             activityIndicator.stopAnimating()
         }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool { //dismissing keyboard

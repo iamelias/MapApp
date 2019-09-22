@@ -38,7 +38,7 @@ class GetPublicClient {
             
             do {
                 let myPublicObjects = try decoder.decode(UserDetailResponse.self, from: newData!) //parsing
-                print(myPublicObjects)
+                //print(myPublicObjects)
                 
                 PublicStruct.firstName = myPublicObjects.firstName //saving data to PublicStruct static variables
                 PublicStruct.lastName = myPublicObjects.lastName
