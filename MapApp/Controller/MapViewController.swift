@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     static var refreshIndicator: Int = 0 //0 is off, 1 is on
     static var errorHandler = false //for download error, initally off
     var mapChecker: Bool = true //checking if I'm in mapViewController
+    static var userExists: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             // print("ViewDidLoad guard")
             return
         }
+        if MapViewController.userExists == false {
         GetPublicClient.publicInfo(completion: self.handleGetUserResponse(success:error:))//**********************
+        }
         GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         //print("I'm back in MapViewController")
     }
@@ -128,6 +131,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func handleGetUserResponse(success: Bool, error: Error?) { //****************************************
         if success == true {
+            MapViewController.userExists = true
             print("Getting User was success")
         }
         else {
