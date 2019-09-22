@@ -19,7 +19,8 @@ class updateLocationClient: UIViewController {
         var request = URLRequest(url: url!)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let updateJSON = resultsResponse(firstName: "Daffy", lastName: "Duck", longitude: newLongitude, latitude: newLatitude, mapString: newLocation, mediaURL: newURL, uniqueKey: "12211", objectId: currentObjectId, createdAt: nil, updatedAt: nil)
+    
+        let updateJSON = resultsResponse(firstName: PublicStruct.firstName, lastName: PublicStruct.lastName, longitude: newLongitude, latitude: newLatitude, mapString: newLocation, mediaURL: newURL, uniqueKey: "12211", objectId: currentObjectId, createdAt: nil, updatedAt: nil)
         let encoder = JSONEncoder()
         let data = try! encoder.encode(updateJSON) //updating current JSON data by using objectiD
         request.httpBody = data

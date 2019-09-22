@@ -37,7 +37,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
         
     }
     @IBAction func cancelTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil) //returning to MapViewController or TableViewController
+        dismiss(animated: true, completion: nil) //returning to MapViewController or TableViewController
         // dismiss(animated: true, completion: nil)
     }
     

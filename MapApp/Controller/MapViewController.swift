@@ -24,11 +24,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         guard MapViewController.errorHandler == false else { //errorHandler is off or return
             // print("ViewDidLoad guard")
             return
         }
+        GetPublicClient.publicInfo(completion: self.handleGetUserResponse(success:error:))//**********************
         GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
         //print("I'm back in MapViewController")
     }
@@ -124,6 +124,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.present(alert, animated: true)
         
         return
+    }
+    
+    func handleGetUserResponse(success: Bool, error: Error?) { //****************************************
+        if success == true {
+            print("Getting User was success")
+        }
+        else {
+            print("Failed to get User")
+        }
     }
     
     func handleGetLocationResponse(success: Bool, error: Error?) {

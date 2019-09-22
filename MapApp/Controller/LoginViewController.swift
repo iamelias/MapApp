@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad() //setting up login textfields
         emailText.delegate = self
         passwordText.delegate = self
+        activityIndicator.isHidden = true
         let emailPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0)) // padding textfields
         let passWordPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0))
         emailText.leftView = emailPadding
@@ -28,7 +29,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    clearView()
+        super.viewWillAppear(true)
+        //clearView()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
@@ -42,11 +44,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func handleLoginResponse(success: Bool, error: Error?) {
         //ErrorDataStruct.ErrorStatus.removeAll
         if success {
-           // print(AuthStruct.sessionId)
+            // print(AuthStruct.sessionId)
             performSegue(withIdentifier: "pushLogin", sender: nil) //push to mapview
         }
         else {
-           // print("********************: \(String(describing: error))")
+            // print("********************: \(String(describing: error))")
             loginFail(message: ErrorDataStruct.ErrorMessage ?? "Connection Issue" ) //calling loginfail alert
             ErrorDataStruct.ErrorMessage = nil
         }
@@ -62,7 +64,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         show(alertBox, sender: nil)
         
     }
-
+    
     func clearView() {
         activityIndicator.isHidden = true //initially keeping activityIndicatior hidden
         loggingIn(false) //activing deactivating view objects
