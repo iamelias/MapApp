@@ -26,14 +26,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         guard MapViewController.errorHandler == false else { //errorHandler is off or return
-            // print("ViewDidLoad guard")
             return
         }
-        if MapViewController.userExists == false {
-        GetPublicClient.publicInfo(completion: self.handleGetUserResponse(success:error:))//**********************
+        if MapViewController.userExists == false { //prevents changing user's pin name when relogging in
+            GetPublicClient.publicInfo(completion: self.handleGetUserResponse(success:error:))
         }
         GetStudentLocationClient.getStudentLocations(completion: self.handleGetLocationResponse(success: error:)) //running GetStudentLocation client to get location object data
-        //print("I'm back in MapViewController")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,11 +69,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 self.present(AddLocationViewController, animated: true, completion: nil) //calling AddViewController modualy
                 
-                //   print("alert is ok")
-                
             })
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in //print("cancel was tapped")
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in
                 return
             })
             
@@ -100,11 +96,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBAction func logoutTapped(_ sender: Any) {
         DeleteClient.DeleteSession { //Deauthenticating
             DispatchQueue.main.async {
-                //print("made it to logoutTapped")
                 self.dismiss(animated: true, completion: nil) //returning to loginScreen
             }
         }
-        
     }
     
     func refresh (inMap: Bool) { //refresh function refreshes MapViewController/TableViewController
@@ -121,7 +115,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func downloadFail() { //called if there is a download fail in client
-        //   print("I got to download fail")
         let alert = UIAlertController(title: "Download Failed", message: "The student locations failed to download", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
@@ -129,13 +122,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return
     }
     
-    func handleGetUserResponse(success: Bool, error: Error?) { //****************************************
+    func handleGetUserResponse(success: Bool, error: Error?) {
         if success == true {
-            MapViewController.userExists = true
-            print("Getting User was success")
+            MapViewController.userExists = true //for possible relogging in
+            // print("Getting User was success")
         }
         else {
-            print("Failed to get User")
+            // print("Failed to get User")
         }
     }
     
@@ -149,7 +142,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             if mapView != nil {
                 MapViewController().makeAnnotations() //calling function that makes annotations for pin
-                //print(MapViewController.myAnnotations) Testing annotations stored in class property successfully
                 self.mapView.addAnnotations(MapViewController.myAnnotations)  //adding all annotations to map
             }
         }
@@ -158,8 +150,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func makeAnnotations() {
         
         var mylocations = DataHoldStruct.ResponseDataArray//GetStudentLocation.ResponseData //getting all api objects
-        // print(mylocations) //Testing Data retrievel
-        //        print(mylocation.count) //Testing mapObject count
         
         var annotationsArray = [MKPointAnnotation]() //holding annotations
         let locationsNumber = mylocations.count
@@ -189,7 +179,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotationsArray.append(annotation) //adding annotation to array of annotations
             
         } //end object mapkit assignments. All stored in annotations array
-        //MapViewController.myAnnotations.removeAll()
         MapViewController.myAnnotations = annotationsArray //assigning annotations array to class property array
         
         return //returning to handleLoginResponse method

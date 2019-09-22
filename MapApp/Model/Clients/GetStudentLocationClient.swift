@@ -23,19 +23,17 @@ class GetStudentLocationClient {
             }
             
             if error != nil {
-            DispatchQueue.main.async {
-                completion(false, nil)
-                return
+                DispatchQueue.main.async {
+                    completion(false, nil)
+                    return
                 }
             }
             
             let decoder = JSONDecoder()
-
+            
             do {
                 
                 let myResponseObjects = try decoder.decode(StudentLocationResponse.self, from: data!) //parsing
-                // print("parsing successful")
-                // print(myResponseObjects)
                 
                 DataHoldStruct.ResponseDataArray = myResponseObjects.results //saving data to array
                 
@@ -46,8 +44,7 @@ class GetStudentLocationClient {
                 
             catch {
                 DispatchQueue.main.async {
-                //print("parsing failed")
-                completion(false, nil)
+                    completion(false, nil)
                 }
             }
         }

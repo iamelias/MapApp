@@ -16,8 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad() //setting up login textfields
-        emailText.delegate = self
+        super.viewDidLoad()
+        emailText.delegate = self //setting up login textfields
         passwordText.delegate = self
         activityIndicator.isHidden = true
         let emailPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0)) // padding textfields
@@ -36,19 +36,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginTapped(_ sender: UIButton) {
         loggingIn(true) //login animation control //later try and set to false
         DispatchQueue.main.async {
-            //print("made it login tapped")
             UdacityClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
         }
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {
-        //ErrorDataStruct.ErrorStatus.removeAll
         if success {
-            // print(AuthStruct.sessionId)
             performSegue(withIdentifier: "pushLogin", sender: nil) //push to mapview
         }
         else {
-            // print("********************: \(String(describing: error))")
             loginFail(message: ErrorDataStruct.ErrorMessage ?? "Connection Issue" ) //calling loginfail alert
             ErrorDataStruct.ErrorMessage = nil
         }

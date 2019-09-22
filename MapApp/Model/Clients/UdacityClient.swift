@@ -29,7 +29,7 @@ class UdacityClient { //Authentication Posting for Login
             
             if error != nil {
                 DispatchQueue.main.async {
-                ErrorDataStruct.ErrorStatus = 0
+                    ErrorDataStruct.ErrorStatus = 0
                     completion(false, nil)
                     return
                 }
@@ -38,11 +38,11 @@ class UdacityClient { //Authentication Posting for Login
             do { //Attempt to Parse Authentication Data
                 let range = 5..<data!.count
                 let newData = data?.subdata(in: range)//changing Data as required for authentication
-                                
+                
                 let decoder = JSONDecoder() //using JSON Decoder for parsing
                 do {
-                let loginResponseObject = try decoder.decode(LoginErrorResponse.self, from: newData!) //parsing. LoginResponse
-
+                    let loginResponseObject = try decoder.decode(LoginErrorResponse.self, from: newData!) //parsing. LoginResponse
+                    
                     ErrorDataStruct.ErrorStatus = loginResponseObject.statusCode
                     ErrorDataStruct.ErrorMessage = loginResponseObject.errorMessage
                     
@@ -51,17 +51,17 @@ class UdacityClient { //Authentication Posting for Login
                     }
                     return
                 }
-                
+                    
                 catch {
                     //continue
                 }
                 let loginResponseObject = try decoder.decode(LoginResponse.self, from: newData!) //parsing. LoginResponse uses AccountResponse and SessionResponse
-
+                
                 AuthStruct.sessionId = loginResponseObject.session.id //Saving Authorization data in AuthStruct
                 AuthStruct.key = loginResponseObject.account.key
                 AuthStruct.registered = loginResponseObject.account.registered
                 AuthStruct.expiration = loginResponseObject.session.expiration
-
+                
                 DispatchQueue.main.async {
                     completion(true,nil)
                 }
@@ -70,7 +70,7 @@ class UdacityClient { //Authentication Posting for Login
             catch { // If Parsing Fails...
                 
                 DispatchQueue.main.async {
-                completion(false,nil)
+                    completion(false,nil)
                 }
             }
         }

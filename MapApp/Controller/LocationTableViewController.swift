@@ -46,8 +46,6 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func refreshTapped(_ sender: Any) {
         Table.reloadData()
-        //print("Table reload was called")
-        
     }
     
     @IBAction func logoutTapped(_ sender: Any) {
@@ -97,7 +95,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func handleGetTableResponse(success: Bool, error: Error?) {
-        // print("Sucessfully reached handleGetTableResponse")
+        // print("reached handleGetTableResponse")
     }
     
     func downloadFail() { //alert if downloard error
@@ -107,7 +105,6 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
         return DataHoldStruct.ResponseDataArray.count //defining number of cells
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

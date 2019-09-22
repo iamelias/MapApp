@@ -17,7 +17,6 @@ class DeleteClient {
         request.httpMethod = "DELETE"
         
         let logoutBody = LogoutRequest(sessionId: AuthStruct.sessionId) //encoding sessionId
-        //print("Logout SessionID: \(logoutBody)")
         request.httpBody = try! JSONEncoder().encode(logoutBody)
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared

@@ -25,8 +25,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     var userTransferLat: Double = 0
     var userTransferLon: Double = 0
     
-    //var delegate = MKMapViewDelegate.self
-    
     override func viewDidLoad() { //initial view setup
         super.viewDidLoad()
         LocationText.delegate = self
@@ -38,7 +36,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     }
     @IBAction func cancelTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil) //returning to MapViewController or TableViewController
-        // dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tapFindOnMap(_ sender: Any) {
@@ -46,7 +43,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
         let address = LocationText.text!
         let geocode = CLGeocoder()
         geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) {
-           
+            
             //Geocoding fail alert
             let alert = UIAlertController(title: "Geocoding Failed", message: "Cannot present the location", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -66,7 +63,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
                 
                 self.userTransferLat = transferLat
                 self.userTransferLon = transferLon
-            
+                
                 var mapRegion = MKCoordinateRegion() //Defining map surrounding pin when adding view
                 mapRegion.center = coordinate
                 mapRegion.span.latitudeDelta = 0.2
@@ -80,7 +77,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
                 let addedLocation = "\(name),\(region)" //Defining annotation detail
                 self.userAddedLocation = addedLocation
                 self.userTransferURL = self.URLText.text!
-                //print(addedLocation)
                 
                 let annotation = MKPointAnnotation() //creating/defining mapkit annotation
                 annotation.coordinate = placemark.location!.coordinate
@@ -90,20 +86,19 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
                 self.addLocationMap.addAnnotation(annotation)
                 self.UIChange() //changing objects present/hidden
                 
-        }})
-}
+            }})
+    }
     
     @IBAction func addTapped(_ sender: Any)
     {
         var updateTester = false //Initially add will not update
         updateTester = AddStudentClient.ObjectData.ObjectIdent //update or add
-       // print(updateTester)
         if updateTester == false { //If false, will not update will add for first time
-        AddStudentClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+            AddStudentClient.postStudentLocation(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
         }
-        
+            
         else { //if true, data is already present so, will update the student data
-        updateLocationClient.update(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
+            updateLocationClient.update(newLocation: userAddedLocation, newURL: self.URLText.text!, newLatitude: userTransferLat, newLongitude: userTransferLon, completion: self.handleGeoResponse(success: error:) )
             
         }
         
@@ -119,7 +114,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
         FindButton.isHidden = true
         activityIndicRun(false)
         
-        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //creating pin Image
@@ -132,28 +126,24 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
             pinImage = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinImage!.canShowCallout = true //making box appear when pin is tapped
             pinImage!.pinTintColor = .red //making the pin red
-            //pinImage!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) //adding info button
         }
         else {
             pinImage!.annotation = annotation
         }
         
-        // pinImage!.isSelected = true
         return pinImage //returning the pin image/view
     }
     
     func handleGeoResponse(success: Bool, error: Error?) { //if there is a problem posting to database
-       
-       // print("made it to handleGeo")
+        
         if success == false { //alert if posting fails
             let alert = UIAlertController(title: "Error: Posting Failed", message: "Cannot post the location", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
             return
         }
-        
+            
         else {
-        //print("Successfull posting to database from AddLocationViewController")
             MapViewController.refreshIndicator = 1 //indicating for refresh
             self.dismiss(animated: true, completion: nil) //returning to mapViewController or tableViewController
         }
@@ -161,7 +151,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     
     func activityIndicRun(_ login: Bool) { //Running acitivityIndicator
         activityIndicator.isHidden = !login //activity controller appears when login is tapped
-      //  print("activity controller is working")
         if login {
             activityIndicator.startAnimating()
         }

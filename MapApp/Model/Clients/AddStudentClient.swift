@@ -19,8 +19,8 @@ class AddStudentClient{
         var request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let addJSON = resultsResponse(firstName: PublicStruct.firstName, lastName: PublicStruct.lastName, longitude: newLongitude, latitude: newLatitude, mapString: newLocation, mediaURL: newURL, uniqueKey: "12211", objectId: nil, createdAt: nil, updatedAt: nil)
+        
+        let addJSON = resultsResponse(firstName: PublicStruct.firstName, lastName: PublicStruct.lastName, longitude: newLongitude, latitude: newLatitude, mapString: newLocation, mediaURL: newURL, uniqueKey: PublicStruct.uniqueKey, objectId: nil, createdAt: nil, updatedAt: nil)
         
         let encoder = JSONEncoder()
         let data = try! encoder.encode(addJSON)
@@ -58,7 +58,6 @@ class AddStudentClient{
                 
             catch {
                 DispatchQueue.main.async {
-                   // print("parsing failed")
                     completion(false, nil)
                 }
             }

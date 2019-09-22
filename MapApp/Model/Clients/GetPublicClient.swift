@@ -33,17 +33,17 @@ class GetPublicClient {
             
             let range = 5..<data!.count
             let newData = data?.subdata(in: range)
-            print(String(data: newData!, encoding: .utf8)!)
             
             let decoder = JSONDecoder()
             
             do {
                 let myPublicObjects = try decoder.decode(UserDetailResponse.self, from: newData!) //parsing
-                 print(myPublicObjects)
+                print(myPublicObjects)
                 
                 PublicStruct.firstName = myPublicObjects.firstName //saving data to PublicStruct static variables
                 PublicStruct.lastName = myPublicObjects.lastName
-
+                PublicStruct.uniqueKey = myPublicObjects.uniqueKey
+                
                 DispatchQueue.main.async {
                     completion(true,nil)
                 }

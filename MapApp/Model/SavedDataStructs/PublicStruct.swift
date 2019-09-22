@@ -12,4 +12,5 @@ struct PublicStruct { //Storing User Data from GetPublicUser api
     
     static var firstName: String = ""
     static var lastName: String = ""
+    static var uniqueKey: String = ""
 }
