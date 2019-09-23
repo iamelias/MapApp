@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="landscape">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="LoginViewController" customClass="LoginViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyMap Login Background" translatesAutoresizingMaskIntoConstraints="NO" id="XrP-la-M91">
-                                <rect key="frame" x="44" y="0.0" width="808" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mH4-2t-DSv">
-                                <rect key="frame" x="60" y="103" width="776" height="44"/>
+                                <rect key="frame" x="16" y="147" width="382" height="44"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="NdE-EQ-gW5"/>
@@ -32,7 +32,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MgT-91-30H">
-                                <rect key="frame" x="60" y="181" width="776" height="44"/>
+                                <rect key="frame" x="16" y="225" width="382" height="44"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="B72-HU-CMk"/>
@@ -42,13 +42,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOc-jM-Ta2">
-                                <rect key="frame" x="69" y="53" width="531" height="42"/>
+                                <rect key="frame" x="25" y="97" width="137" height="42"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDy-7F-FIi">
-                                <rect key="frame" x="400.66666666666669" y="256" width="95" height="54"/>
+                                <rect key="frame" x="159.66666666666666" y="300" width="95" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="q0b-3l-Mwu"/>
                                     <constraint firstAttribute="width" constant="95" id="qC3-bY-PMQ"/>
@@ -63,7 +63,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPS-sW-7yF">
-                                <rect key="frame" x="343" y="329" width="179" height="21"/>
+                                <rect key="frame" x="102" y="373" width="179" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6Cp-Nu-St4"/>
                                 </constraints>
@@ -72,7 +72,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIe-4M-iVE">
-                                <rect key="frame" x="522.33333333333337" y="322" width="70" height="33"/>
+                                <rect key="frame" x="281.33333333333331" y="366" width="70" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="6a0-Xj-M4O"/>
                                 </constraints>
@@ -132,18 +132,18 @@
             <objects>
                 <viewController storyboardIdentifier="TableView" id="0Ao-pa-ljz" userLabel="TableViewController" customClass="LocationTableViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rWd-2T-6T3">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GHk-Tl-oIn">
-                                <rect key="frame" x="44" y="44" width="808" height="370"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="IlG-GK-CgH" detailTextLabel="RPR-sZ-TSO" imageView="umh-Xz-5aJ" style="IBUITableViewCellStyleSubtitle" id="kZF-PZ-e8l">
-                                        <rect key="frame" x="0.0" y="28" width="808" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kZF-PZ-e8l" id="c5g-a8-P9h">
-                                            <rect key="frame" x="0.0" y="0.0" width="808" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IlG-GK-CgH">
@@ -217,11 +217,11 @@
             <objects>
                 <viewController storyboardIdentifier="StoryLoca" id="5kj-L5-nQw" userLabel="AddLocationController" customClass="AddLocationViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jgk-eK-6s8">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ll-K6F">
-                                <rect key="frame" x="44" y="0.0" width="808" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Add Location" id="aYv-QZ-ZmL">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="zxh-fI-2bH">
@@ -233,49 +233,49 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWR-Gh-vrC">
-                                <rect key="frame" x="113" y="84" width="670" height="21"/>
+                                <rect key="frame" x="69" y="128" width="276" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add website/Linkedin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-GP-9zr">
-                                <rect key="frame" x="149" y="123" width="597" height="21"/>
+                                <rect key="frame" x="105" y="167" width="203" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txa-iQ-9P1">
-                                <rect key="frame" x="60" y="233" width="33" height="21"/>
+                                <rect key="frame" x="16" y="277" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqn-w4-Jgp">
-                                <rect key="frame" x="60" y="165" width="66" height="21"/>
+                                <rect key="frame" x="16" y="209" width="66" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zS3-cC-ZTG">
-                                <rect key="frame" x="44" y="44" width="808" height="370"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <connections>
                                     <outlet property="delegate" destination="5kj-L5-nQw" id="2fk-EQ-dkC"/>
                                 </connections>
                             </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="www.JohnDoe.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3su-2W-ZPl">
-                                <rect key="frame" x="60" y="259" width="776" height="30"/>
+                                <rect key="frame" x="16" y="303" width="382" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Los Angeles, CA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPB-3n-t1K">
-                                <rect key="frame" x="60" y="194" width="776" height="30"/>
+                                <rect key="frame" x="16" y="238" width="382" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1W-hu-YwT">
-                                <rect key="frame" x="60" y="329" width="776" height="40"/>
+                                <rect key="frame" x="16" y="373" width="382" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="K7S-33-xbz"/>
                                 </constraints>
@@ -285,11 +285,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdX-pZ-OIW" userLabel="Add Button">
-                                <rect key="frame" x="60" y="330" width="776" height="40"/>
+                                <rect key="frame" x="16" y="799" width="382" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cva-44-OqP"/>
                                 </constraints>
-                                <state key="normal" title="Submit" backgroundImage="EmptyButton"/>
+                                <state key="normal" title="Add" backgroundImage="EmptyButton"/>
                                 <connections>
                                     <action selector="addTapped:" destination="5kj-L5-nQw" eventType="touchUpInside" id="ned-VL-o1s"/>
                                 </connections>
@@ -352,11 +352,11 @@
             <objects>
                 <viewController storyboardIdentifier="MapCon" id="Bhs-ik-jvb" userLabel="MapViewController" customClass="MapViewController" customModule="MapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ecW-Oc-7gx">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="w6t-z9-5pa">
-                                <rect key="frame" x="44" y="44" width="808" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <connections>
                                     <outlet property="delegate" destination="Bhs-ik-jvb" id="NWg-3r-SI1"/>
                                 </connections>
@@ -427,7 +427,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" id="Jon-E9-SZZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bPb-ED-y2d">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -446,7 +446,7 @@
                     <tabBarItem key="tabBarItem" title="List" image="icon_listview-deselected" id="TtH-xF-9eg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rxn-qp-Mrf">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
