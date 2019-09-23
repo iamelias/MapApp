@@ -20,10 +20,17 @@ class UdacityClient { //Authentication Posting for Login
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in //making post request with "request" object
             
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    //print("error")
-                   // print(response!)
+            guard data != nil else {
+                DispatchQueue.main.async {
+                    completion(false,nil)
+                }
+                return
+            }
+            
+            if error != nil {
+                DispatchQueue.main.async {
+                    ErrorDataStruct.ErrorStatus = 0
+                    completion(false, nil)
                     return
                 }
             }
@@ -32,13 +39,10 @@ class UdacityClient { //Authentication Posting for Login
                 let range = 5..<data!.count
                 let newData = data?.subdata(in: range)//changing Data as required for authentication
                 
-                //print(String(data: newData!, encoding: .utf8)!) //printing Data for testing
-                
                 let decoder = JSONDecoder() //using JSON Decoder for parsing
                 do {
-                let loginResponseObject = try decoder.decode(LoginErrorResponse.self, from: newData!) //parsing. LoginResponse
-                //print("Status Code: \(loginResponseObject.statusCode)")
-               // print("Status Code: \(loginResponseObject.errorMessage)")
+                    let loginResponseObject = try decoder.decode(LoginErrorResponse.self, from: newData!) //parsing. LoginResponse
+                    
                     ErrorDataStruct.ErrorStatus = loginResponseObject.statusCode
                     ErrorDataStruct.ErrorMessage = loginResponseObject.errorMessage
                     
@@ -47,22 +51,17 @@ class UdacityClient { //Authentication Posting for Login
                     }
                     return
                 }
-                
+                    
                 catch {
                     //continue
                 }
                 let loginResponseObject = try decoder.decode(LoginResponse.self, from: newData!) //parsing. LoginResponse uses AccountResponse and SessionResponse
-                //print("sucessfully parsed auth data")
-//                print("This is the Key: \(loginResponseObject.account.key)")//Testing parsed constants in structs
-//                print("This is if Registered: \(loginResponseObject.account.registered)")
-//                print("This is Expiration: \(loginResponseObject.session.expiration)")
-//                print("This is the id: \(loginResponseObject.session.id)")
                 
                 AuthStruct.sessionId = loginResponseObject.session.id //Saving Authorization data in AuthStruct
                 AuthStruct.key = loginResponseObject.account.key
                 AuthStruct.registered = loginResponseObject.account.registered
                 AuthStruct.expiration = loginResponseObject.session.expiration
-
+                
                 DispatchQueue.main.async {
                     completion(true,nil)
                 }
@@ -70,9 +69,8 @@ class UdacityClient { //Authentication Posting for Login
             }
             catch { // If Parsing Fails...
                 
-                //print("Parsing failure")
                 DispatchQueue.main.async {
-                completion(false,nil)
+                    completion(false,nil)
                 }
             }
         }

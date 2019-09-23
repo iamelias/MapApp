@@ -1,17 +1,19 @@
 //
-//  GetStudentLocation.swift
+//  GetPublicClient.swift
 //  MapApp
 //
-//  Created by Elias Hall on 8/28/19.
+//  Created by Elias Hall on 9/22/19.
 //  Copyright © 2019 Elias Hall. All rights reserved.
 //
-//This code gets retrieves student information from server for map/table views. Uses GET
+
 import Foundation
-class GetStudentLocationClient {
+import UIKit
+
+class GetPublicClient {
     
-    class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
+    class func publicInfo(completion: @escaping  (Bool, Error?) -> Void) {
         
-        let locationsEndpointRequest = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=-updatedAt")!) //number of object returned= 100, returned in reversed order from most recent entry-> first entry
+        let locationsEndpointRequest = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!) //accessing getting public user data
         let session = URLSession.shared
         
         let task = session.dataTask(with: locationsEndpointRequest) { data, response, error in
@@ -29,13 +31,18 @@ class GetStudentLocationClient {
                 }
             }
             
+            let range = 5..<data!.count
+            let newData = data?.subdata(in: range)
+            
             let decoder = JSONDecoder()
             
             do {
+                let myPublicObjects = try decoder.decode(UserDetailResponse.self, from: newData!) //parsing
+                //print(myPublicObjects)
                 
-                let myResponseObjects = try decoder.decode(StudentLocationResponse.self, from: data!) //parsing
-                
-                DataHoldStruct.ResponseDataArray = myResponseObjects.results //saving data to array
+                PublicStruct.firstName = myPublicObjects.firstName //saving data to PublicStruct static variables
+                PublicStruct.lastName = myPublicObjects.lastName
+                PublicStruct.uniqueKey = myPublicObjects.uniqueKey
                 
                 DispatchQueue.main.async {
                     completion(true,nil)
@@ -51,3 +58,4 @@ class GetStudentLocationClient {
         task.resume()
     }
 }
+

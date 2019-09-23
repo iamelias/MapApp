@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailText: UITextField!
     @IBOutlet var passwordText: UITextField!
     @IBOutlet var signUpButton: UIButton!
@@ -16,7 +16,10 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad() //setting up login textfields
+        super.viewDidLoad()
+        emailText.delegate = self //setting up login textfields
+        passwordText.delegate = self
+        activityIndicator.isHidden = true
         let emailPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0)) // padding textfields
         let passWordPadding = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0))
         emailText.leftView = emailPadding
@@ -26,25 +29,24 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    clearView()
+        super.viewWillAppear(true)
+        //clearView()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
         loggingIn(true) //login animation control //later try and set to false
         DispatchQueue.main.async {
-            //print("made it login tapped")
             UdacityClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
         }
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {
         if success {
-           // print(AuthStruct.sessionId)
             performSegue(withIdentifier: "pushLogin", sender: nil) //push to mapview
         }
         else {
-           // print("********************: \(String(describing: error))")
             loginFail(message: ErrorDataStruct.ErrorMessage ?? "Connection Issue" ) //calling loginfail alert
+            ErrorDataStruct.ErrorMessage = nil
         }
         
         self.loggingIn(false) //resetting view activations
@@ -58,7 +60,7 @@ class LoginViewController: UIViewController {
         show(alertBox, sender: nil)
         
     }
-
+    
     func clearView() {
         activityIndicator.isHidden = true //initially keeping activityIndicatior hidden
         loggingIn(false) //activing deactivating view objects
@@ -84,6 +86,12 @@ class LoginViewController: UIViewController {
         passwordText.isEnabled = !login
         loginButton.isEnabled = !login
         signUpButton.isEnabled = !login
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+        return true
     }
 }
 
