@@ -100,7 +100,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    
+   
     func refresh (inMap: Bool) { //refresh function refreshes MapViewController/TableViewController
         
         if inMap { //if accessing from map controller

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UdacityClient { //Authentication Posting for Login
+class LoginClient { //Authentication Posting for Login
     
     class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         

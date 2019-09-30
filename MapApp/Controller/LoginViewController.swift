@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginTapped(_ sender: UIButton) {
         loggingIn(true) //login animation control //later try and set to false
         DispatchQueue.main.async {
-            UdacityClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
+            LoginClient.createSessionId(username: self.emailText.text ?? "", password: self.passwordText.text ?? "", completion: self.handleLoginResponse(success: error:))
         }
     }
     
