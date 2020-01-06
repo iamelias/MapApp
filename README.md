@@ -1,7 +1,7 @@
 # MapApp, iOS Developer: Elias.H
 
 **Run instructions:** 
-Xcode 10.3, iPhone XS, portrait only, user nees username and password at login screen
+Xcode 10.3, iPhone XS, portrait only, user needs a working username and password at login screen for further access.
 
 **Important concepts used:** Authentication, API Network calling(ex. GET/POST), Geocoding
 
