@@ -7,6 +7,7 @@
 //
 //This code gets retrieves student information from server for map/table views. Uses GET
 import Foundation
+
 class GetStudentLocationClient {
     
     class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
