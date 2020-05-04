@@ -108,7 +108,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var tableRowLabel = DataHoldStruct.ResponseDataArray //assigning struct that holds each student object
+        let tableRowLabel = DataHoldStruct.ResponseDataArray //assigning struct that holds each student object
         //print(tableRowLabel) //Testing TableView cell data retrieved
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) //defining the reusable cell
@@ -119,7 +119,7 @@ class LocationTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var tableRowLabel = DataHoldStruct.ResponseDataArray
+        let tableRowLabel = DataHoldStruct.ResponseDataArray
         let app = UIApplication.shared
         guard let url = URL(string: tableRowLabel[indexPath.row].mediaURL!) else {
             return

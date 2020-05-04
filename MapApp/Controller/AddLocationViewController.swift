@@ -12,9 +12,9 @@ import CoreLocation
 
 class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var LocationText: UITextField!
+    @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var URLText: UITextField!
-    @IBOutlet weak var FindButton: UIButton!
+    @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var addLocationMap: MKMapView!
     @IBOutlet weak var addButton: UIButton!
@@ -27,7 +27,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     
     override func viewDidLoad() { //initial view setup
         super.viewDidLoad()
-        LocationText.delegate = self
+        locationText.delegate = self
         URLText.delegate = self
         addLocationMap.isHidden = true //hiding post find location look
         addButton.isHidden = true
@@ -41,7 +41,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     @IBAction func tapFindOnMap(_ sender: Any) {
         self.view.endEditing(true) //automatically dismiss keyboard
         activityIndicRun(true) //starting the activity indicator
-        let address = LocationText.text!
+        let address = locationText.text!
         let geocode = CLGeocoder()
         geocode.geocodeAddressString(address, completionHandler: { placemarks, error in if (error != nil) {
             
@@ -110,9 +110,9 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
         
         addLocationMap.isHidden = false
         addButton.isHidden = false
-        LocationText.isHidden = true
+        locationText.isHidden = true
         URLText.isHidden = true
-        FindButton.isHidden = true
+        findButton.isHidden = true
         activityIndicRun(false)
         
     }
@@ -162,7 +162,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate, UITextFiel
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool { //dismissing keyboard
-        LocationText.resignFirstResponder()
+        locationText.resignFirstResponder()
         URLText.resignFirstResponder()
         return true
     }
